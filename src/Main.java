@@ -11,7 +11,7 @@ public class Main {
     public static final String PATH = "D://javaHomeworksTemp/Games/saveGames/";
 
     public static void main(String[] args) {
-        openZip(PATH + "/saves.zip", PATH + "saves/");
+        openZip(PATH + "/saves.zip", PATH);
         for (String nameGameProgress : namesGameProgress) {
             openProgress(nameGameProgress);
         }
@@ -23,7 +23,7 @@ public class Main {
             String name;
             while ((entry = zin.getNextEntry()) != null) {
                 name = entry.getName();
-                try (FileOutputStream fout = new FileOutputStream(saveFile)) {
+                try (FileOutputStream fout = new FileOutputStream(saveFile + name)) {
                     for (int c = zin.read(); c != -1; c = zin.read()) {
                         fout.write(c);
                     }
